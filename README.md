@@ -5,3 +5,6 @@ A graphics programming project from the 42 Common Core curriculum that demonstra
 
 ## Hooks
 	You can see the usage of hooks to get the keyboard and other forms of input here.
+
+## colors
+	as you tweak, you will know how to set colors to the canvas/image.

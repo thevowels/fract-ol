@@ -2,24 +2,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 #define WIDTH 720
 #define HEIGHT 480
+#define BPP sizeof(int32_t)
 
-void my_keyhook(mlx_key_data_t keydata, void* param)
+int get_rgba(int r, int g, int b, int a)
 {
-	// If we PRESS the 'J' key, print "Hello".
-	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
-		puts("Hello ");
-
-	// If we RELEASE the 'K' key, print "World".
-	if (keydata.key == MLX_KEY_K && keydata.action == MLX_RELEASE)
-		puts("World");
-
-	// If we HOLD the 'L' key, print "!".
-	if (keydata.key == MLX_KEY_L && keydata.action == MLX_REPEAT)
-		puts("!");
+    return (r << 24 | g << 16 | b << 8 | a);
 }
 
 int	main(void)
@@ -28,8 +20,23 @@ int	main(void)
 
 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
 		return (EXIT_FAILURE);
-
-	mlx_key_hook(mlx, &my_keyhook, NULL);
+	
+	mlx_image_t* img = mlx_new_image(mlx,WIDTH,HEIGHT);
+	// memset(img->pixels, 255, img->width * img->height * BPP);
+	int i;
+	int j;
+	i = 100;
+	while ( i < 300)
+	{
+		j = 100;
+		while(j < 300)
+		{
+			mlx_put_pixel(img, i, j, 0xFF0000FF);
+			j++;
+		}
+		i++;
+	}
+	mlx_image_to_window(mlx,img,0,0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

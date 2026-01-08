@@ -5,7 +5,7 @@ LIBMLX	:= ./lib/MLX42
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 # SRCS	:= $(shell find ./src -iname "*.c")
-SRCS	:= ./src/scroll.c
+SRCS	:= ./src/main.c
 OBJS	:= ${SRCS:.c=.o}
 
 all: libmlx $(NAME)
