@@ -1,43 +1,45 @@
 // Written by Bruh
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include "../lib/MLX42/include/MLX42/MLX42.h"
-#define WIDTH 720
-#define HEIGHT 480
-#define BPP sizeof(int32_t)
+
+#include "fractol.h"
+#include "colors.h"
+#include "fractals.h"
+#include "hooks.h"
+#include "image.h"
+#include "init.h"
+void	parse_args(int argc, char **argv, t_fractol *fractol);
 
 int get_rgba(int r, int g, int b, int a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
-
-int	main(void)
+void help_msg(void)
 {
-	mlx_t* mlx;
+	printf("blah blah\n");
+}
+int	main(int argc, char **argv)
+{
+	t_fractol	fractol;
+	t_img		img;
 
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-		return (EXIT_FAILURE);
-	
-	mlx_image_t* img = mlx_new_image(mlx,WIDTH,HEIGHT);
-	// memset(img->pixels, 255, img->width * img->height * BPP);
-	int i;
-	int j;
-	i = 100;
-	while ( i < 300)
+	img.mlx = mlx_init(WIDTH, HEIGHT, "Fractol", true);
+	img.img = mlx_new_image(img.mlx, WIDTH, HEIGHT);
+	if (!img.img)
+		return (1);
+	fractol.img = img;
+	parse_args(argc, argv, &fractol);
+	if (fractol.error == -1)
 	{
-		j = 100;
-		while(j < 300)
-		{
-			mlx_put_pixel(img, i, j, 0xFF0000FF);
-			j++;
-		}
-		i++;
+		help_msg();
+		return (1);
 	}
-	mlx_image_to_window(mlx,img,0,0);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	help_msg();
+	init(&fractol);
+	draw_fractal(&fractol);
+	mlx_scroll_hook(img.mlx, &handle_mouse, &fractol);
+	mlx_key_hook(img.mlx, &handel_keyboard, &fractol);
+	mlx_loop(fractol.img.mlx);
+	mlx_terminate(fractol.img.mlx);
 	return (EXIT_SUCCESS);
 }
