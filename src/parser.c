@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:22:44 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/20 06:28:27 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 05:50:22 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static void	set_julia_constants(t_fractol *f, int ac, char **av)
 {
-	if (ac < 5 && ac != 3)
+	ft_printf("set_julia constant");
+	if (ac == 4)  // Changed: should be exactly 4 args for Julia with constants
 	{
 		f->c_re = ft_atof(av[2]);
 		if (f->c_re > 2.0 || f->c_re < -2.0)
@@ -29,6 +30,7 @@ static void	set_julia_constants(t_fractol *f, int ac, char **av)
 		f->is_error = -1;
 }
 
+#include <stdio.h>
 
 static void	set_fractal(t_fractol *f, int ac, char **av)
 {
@@ -36,13 +38,15 @@ static void	set_fractal(t_fractol *f, int ac, char **av)
 		f->fractal = &mandelbrot;
 	else if (*(av[1]) == 'J' || *(av[1]) == 'j')
 	{
+		ft_printf("get called set fractal\n");
 		f->fractal = &julia;
 		if (ac > 2)
 			set_julia_constants(f, ac, av);
 		else
 		{
-			f->c_im = -0.090000;
+			f->c_im = -0.095000;
 			f->c_re = -0.766667;
+			printf("Constants %f && %f\n", f->c_im, f->c_re);
 		}
 	}
 	// else if (ft_strncmp("T", av[1], 1) == 0)

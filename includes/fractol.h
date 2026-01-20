@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/20 07:47:45 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 06:13:52 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # endif
 
 # ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 50
+#  define MAX_ITERATIONS 100
 # endif
 
 typedef struct s_img

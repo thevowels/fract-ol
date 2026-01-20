@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:50:10 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 03:06:30 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 06:13:19 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init(t_fractol *f)
 	f->max_r = 2.0;
 	f->min_i = -2.0;
 	f->max_i = 2.0;
-	f->zoom_factor = 1.0;
+	f->zoom_factor = 2.0;
 	f->is_error = 0;
 	f->color_pattern = 1;
 	f->get_color = &color_pattern_1;
