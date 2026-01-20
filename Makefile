@@ -1,30 +1,46 @@
-NAME	:= Game
-CFLAGS	:=  -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./lib/MLX42
+NAME		:= fractol
+CFLAGS		:=  -Wall -Wextra -Werror
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-# SRCS	:= $(shell find ./src -iname "*.c")
-SRCS	:= ./src/main.c
-OBJS	:= ${SRCS:.c=.o}
+LIBFT		:= ./lib/libft/libft.a
+LIBFT_PATH	:= ./lib/libft/
 
-all: libmlx $(NAME)
+LIBMLX		:= ./lib/MLX42
+LIBMLX_F	:= $(LIBMLX)/build/libmlx42.a
 
-libmlx:
+HEADERS		:= -I ./includes -I $(LIBMLX)/include -I $(LIBFT_PATH)/includes
+LIBS		:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# SRCS		:= $(shell find ./src -iname "*.c")
+
+SRCS_PATH	:= src/
+SRCS_FILES	:= 	actions.c colors.c fractals.c \
+				hooks.c inits.c main.c \
+				parser.c utils.c
+SRCS		:= $(addprefix $(SRCS_PATH), $(SRCS_FILES))
+
+OBJS		:= ${SRCS:.c=.o}
+
+all: $(LIBMLX_F) $(LIBFT) ./includes/fractol.h $(NAME)
+
+$(LIBMLX_F):
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
+$(LIBFT):
+	@make -sC $(LIBFT_PATH)
+
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -I ./includes -o $@ -c $< $(HEADERS) 
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
 	@rm -rf $(LIBMLX)/build
+	@make clean -sC $(LIBFT_PATH)
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -f $(LIBFT)
 
 re: clean all
 
