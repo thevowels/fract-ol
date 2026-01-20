@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:29:42 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/20 07:56:20 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 02:18:37 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 // Pattern 1: Blue to Red gradient
 int	color_pattern_1(int iterations, int max_iterations)
 {
-	// double	t;
-	// int		r, g, b;
+	double	t;
+	int		r, g, b;
 
-	// if (iterations == max_iterations)
-	// 	return (get_rgba(0, 0, 0, 255));
-	// t = (double)iterations / max_iterations;
-	// r = (int)(255 * t);
-	// g = (int)(128 * (1 - t));
-	// b = (int)(255 * (1 - t));
-	// return (get_rgba(r, g, b, 255));
 	if (iterations == max_iterations)
-	return (get_rgba(0, 0, 0, 255));
+		return (get_rgba(0, 0, 0, 255));
+	t = (double)iterations / max_iterations;
+	r = (int)(255 * t);
+	g = (int)(128 * (1 - t));
+	b = (int)(255 * (1 - t));
+	return (get_rgba(r, g, b, 255));
+	// if (iterations == max_iterations)
+	// 	return (get_rgba(255, 0, 0, 255));
 
-	int intensity = (iterations * 255) / max_iterations;
-	(void)intensity;
-	return (get_rgba(255, 0, 0, 255));
+	// int intensity = (iterations * 255) / max_iterations;
+	// (void)intensity;
+	// return (get_rgba(255, 0, 0, 255));
 
 }
 

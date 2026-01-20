@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:14:09 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/20 09:19:20 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 03:05:15 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	draw(t_fractol *f)
 {
 	mlx_delete_image(f->img.mlx, f->img.img);
 	f->img.img = mlx_new_image(f->img.mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(f->img.mlx, f->img.img, 0, 0);
 	f->x = 0;
 	f->y = 0;
 	while (f->x < WIDTH)
@@ -26,7 +27,6 @@ void	draw(t_fractol *f)
 			f->z_re = f->min_r + (double)f->x * (f->max_r - f->min_r) / WIDTH;
 			f->z_im = f->max_i + (double)f->y * (f->min_i - f->max_i) / HEIGHT;
 			f->n = f->fractal(f);
-			ft_printf("%d , %d \n", f->x, f->y);
 			mlx_put_pixel(f->img.img, f->x, f->y, f->get_color(f->n,
 					MAX_ITERATIONS));
 			f->y++;
@@ -35,6 +35,29 @@ void	draw(t_fractol *f)
 	}
 	ft_printf("end of draw");
 }
+// void	draw(t_fractol *f)
+// {
+// 	mlx_delete_image(f->img.mlx, f->img.img);
+// 	f->img.img = mlx_new_image(f->img.mlx, WIDTH, HEIGHT);
+// 	f->x = 0;
+// 	f->y = 0;
+// 	while (f->x < WIDTH)
+// 	{
+// 		f->y = 0;
+// 		while (f->y < HEIGHT)
+// 		{
+// 			f->z_re = f->min_r + (double)f->x * (f->max_r - f->min_r) / WIDTH;
+// 			f->z_im = f->max_i + (double)f->y * (f->min_i - f->max_i) / HEIGHT;
+// 			f->n = f->fractal(f);
+// 			ft_printf("%d , %d \n", f->x, f->y);
+// 			mlx_put_pixel(f->img.img, f->x, f->y, f->get_color(f->n,
+// 					MAX_ITERATIONS));
+// 			f->y++;
+// 		}
+// 		f->x++;
+// 	}
+// 	ft_printf("end of draw");
+// }
 static double	map(int pixel, double max_px, double min_math, double max_math)
 {
 	double	range;
@@ -63,7 +86,8 @@ void	move(t_fractol *f, double distance, char direction)
 {
 	double width;
 	double height;
-
+	
+	ft_printf("Moving to %c\n", direction);
 	width = f->max_r - f->min_r;
 	height = f->max_i - f->min_i;
 	if (direction == 'R')
