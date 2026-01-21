@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:10:44 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:25:20 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ struct						s_fractol
 	int						n;
 	int						x;
 	int						y;
+	int						width;
+	int						height;
 	double					inv_max;
 	double					z_im;
 	double					z_re;

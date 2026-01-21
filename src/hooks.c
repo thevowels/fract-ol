@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:05:37 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 11:43:40 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:49:16 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,18 @@ void	frame_hook(void *param)
 		fractol->accumulated_zoom = 0;
 		fractol->is_zooming = false;
 	}
+}
+
+void	resize_hook(int32_t width, int32_t height, void *param)
+{
+	t_fractol	*fractol;
+
+	fractol = (t_fractol *)param;
+	fractol->width = width;
+	fractol->height = height;
+	mlx_delete_image(fractol->img.mlx, fractol->img.img);
+	fractol->img.img = mlx_new_image(fractol->img.mlx, fractol->width,
+			fractol->height);
+	mlx_image_to_window(fractol->img.mlx, fractol->img.img, 0, 0);
+	fractol->draw(fractol);
 }

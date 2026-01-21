@@ -6,25 +6,26 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:14:09 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:11:20 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:49:23 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractals.h"
 #include "fractol.h"
-#include "actions.h"
 
 void	draw_pixelbase(t_fractol *f)
 {
 	f->x = 0;
 	f->y = 0;
-	while (f->x < WIDTH)
+	while (f->x < f->width)
 	{
 		f->y = 0;
-		while (f->y < HEIGHT)
+		while (f->y < f->height)
 		{
-			f->z_re = f->min_r + ((double)f->x * (f->max_r - f->min_r)) / WIDTH;
+			f->z_re = f->min_r + ((double)f->x * (f->max_r - f->min_r))
+				/ f->width;
 			f->z_im = f->max_i + ((double)f->y * (f->min_i - f->max_i))
-				/ HEIGHT;
+				/ f->height;
 			f->n = f->fractal(f);
 			mlx_put_pixel(f->img.img, f->x, f->y, f->get_color(f->n,
 					MAX_ITERATIONS));
@@ -37,7 +38,8 @@ void	draw_pixelbase(t_fractol *f)
 void	draw_pointbase(t_fractol *f)
 {
 	mlx_delete_image(f->img.mlx, f->img.img);
-	f->img.img = mlx_new_image(f->img.mlx, 3000, 2000);
+	f->img.img = mlx_new_image(f->img.mlx, f->img.mlx->width,
+			f->img.mlx->height);
 	mlx_image_to_window(f->img.mlx, f->img.img, 0, 0);
 	leaf_generator(f);
 }
@@ -49,15 +51,15 @@ void	zoom(t_fractol *fractol, int x, int y, double zoom_factor)
 	double	new_x_range;
 	double	new_y_range;
 
-	x_math = fractol->min_r + ((double)x / WIDTH) * (fractol->max_r
+	x_math = fractol->min_r + ((double)x / fractol->width) * (fractol->max_r
 			- fractol->min_r);
-	y_math = fractol->min_i + (1 - (double)y / HEIGHT) * (fractol->max_i
-			- fractol->min_i);
+	y_math = fractol->min_i + (1 - (double)y / fractol->height)
+		* (fractol->max_i - fractol->min_i);
 	new_x_range = (fractol->max_r - fractol->min_r) / zoom_factor;
 	new_y_range = (fractol->max_i - fractol->min_i) / zoom_factor;
-	fractol->min_r = x_math - ((double)x / WIDTH) * new_x_range;
+	fractol->min_r = x_math - ((double)x / fractol->width) * new_x_range;
 	fractol->max_r = fractol->min_r + new_x_range;
-	fractol->min_i = y_math - (1 - (double)y / HEIGHT) * new_y_range;
+	fractol->min_i = y_math - (1 - (double)y / fractol->height) * new_y_range;
 	fractol->max_i = fractol->min_i + new_y_range;
 }
 
