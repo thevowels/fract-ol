@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractals.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/20 05:24:52 by aphyo-ht          #+#    #+#             */
+/*   Updated: 2026/01/21 12:49:47 by aphyo-ht         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FRACTALS_H
+# define FRACTALS_H
+
+# include "fractol.h"
+
+int		julia(t_fractol *f);
+int		mandelbrot(t_fractol *f);
+void	leaf_choice(t_leaf *leaf, t_fractol *f);
+void	leaf_generator(t_fractol *f);
+
+#endif
