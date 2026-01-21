@@ -6,13 +6,14 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:57:22 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/20 08:00:35 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:56:37 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fractol.h"
-// add ft_printf to libft
+#include "colors.h"
+
 void	help_msg(void)
 {
 	ft_printf("⊱ ───────────────── {.⋅ Fractol ⋅.} ───────────────── ⊰\n\n");
@@ -20,8 +21,8 @@ void	help_msg(void)
 	ft_printf("M - Mandelbrot    ");
 	ft_printf("J - Julia    ");
 	ft_printf("T - Tricorn\n\n");
-	ft_printf("\e[36mUsage example:\t./fractol <type>\n\t\t./fractol M\e[0m\n\n"\
-	);
+	ft_printf("\e[36mUsage example:\t./fractol <type>\n\t\t./fractol \
+	M\e[0m\n\n");
 	ft_printf("\nFor Julia, you may specify starting values which should be betw\
 	een -2.0 and 2.0.\n");
 	ft_printf("\e[36mUsage example:\t");
@@ -42,4 +43,19 @@ void	exit_mlx(t_img *img)
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+int	get_psychedelic_color(int iterations, int max_iterations, int pattern)
+{
+	if (pattern == 1)
+		return (color_pattern_1(iterations, max_iterations));
+	else if (pattern == 2)
+		return (color_pattern_2(iterations, max_iterations));
+	else if (pattern == 3)
+		return (color_pattern_3(iterations, max_iterations));
+	else if (pattern == 4)
+		return (color_pattern_4(iterations, max_iterations));
+	else if (pattern == 5)
+		return (color_pattern_5(iterations, max_iterations));
+	return (color_pattern_1(iterations, max_iterations));
 }

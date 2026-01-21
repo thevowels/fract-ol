@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:05:37 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 06:12:55 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 08:37:48 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static void	shift_color(t_fractol *f)
 {
-	ft_printf("Shift color called\n");
 	if (f->color_pattern == 1)
 		f->get_color = color_pattern_2;
 	else if (f->color_pattern == 2)
@@ -27,8 +26,8 @@ static void	shift_color(t_fractol *f)
 		f->get_color = color_pattern_5;
 	else if (f->color_pattern == 5)
 		f->get_color = color_pattern_1;
-	if(f->color_pattern <5 )
-		f->color_pattern+= 1;
+	if (f->color_pattern < 5)
+		f->color_pattern += 1;
 	else
 		f->color_pattern = 1;
 }
@@ -46,7 +45,7 @@ static void	shift_color(t_fractol *f)
 // 	if(mlx_is_key_down(fractol->img.mlx, MLX_KEY_ESCAPE))
 // 	{
 // 		exit_mlx(&fractol->img);
-// 		return;
+// 		return ;
 // 	}
 // 	else if(keys_down(fractol->img.mlx, MLX_KEY_UP , MLX_KEY_W))
 // 		move(fractol, 0.2, 'U');
@@ -59,8 +58,8 @@ static void	shift_color(t_fractol *f)
 // 	else if(mlx_is_key_down(fractol->img.mlx, MLX_KEY_C))
 // 		shift_color(fractol);
 // 	else
-// 		return;
-// 	return;
+// 		return ;
+// 	return ;
 // }
 void	keyboard_hook(mlx_key_data_t key, void *param)
 {
@@ -87,18 +86,15 @@ void	keyboard_hook(mlx_key_data_t key, void *param)
 	draw(fractol);
 }
 
-#include <stdio.h>
-
 void	mouse_hook(double xdelta, double ydelta, void *param)
 {
-	t_fractol *fractol;
-	int32_t mouse_x;
-	int32_t mouse_y;
+	t_fractol	*fractol;
+	int32_t		mouse_x;
+	int32_t		mouse_y;
 
 	(void)xdelta;
 	fractol = (t_fractol *)param;
 	mlx_get_mouse_pos(fractol->img.mlx, &mouse_x, &mouse_y);
-	printf("mouse pos  %i %i \n", mouse_x, mouse_y);
 	if (ydelta < 0)
 		zoom(fractol, mouse_x, mouse_y, fractol->zoom_factor);
 	else if (ydelta > 0)

@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 06:13:52 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:52:04 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 960
+#  define HEIGHT 720
 # endif
 
 # ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 100
+#  define MAX_ITERATIONS 200
 # endif
 
 typedef struct s_img
@@ -37,18 +37,6 @@ typedef struct s_img
 	mlx_image_t				*img;
 }							t_img;
 
-/**
- * @struct s_fractol
-
-	* @brief Structure containing fractal rendering data and complex number coordinates
- * @param img Image structure containing MLX instance and image
- * @param x X coordinate for pixel position
- * @param y Y coordinate for pixel position
- * @param z_im Imaginary part of complex number z
- * @param z_re Real part of complex number z
- * @param c_im Imaginary part of complex constant c
- * @param c_re Real part of complex constant c
- */
 typedef struct s_fractol	t_fractol;
 
 struct						s_fractol
@@ -57,12 +45,11 @@ struct						s_fractol
 	int						n;
 	int						x;
 	int						y;
+	double					inv_max;
 	double					z_im;
 	double					z_re;
 	double					c_im;
 	double					c_re;
-	double					map_x_re;
-	double					map_y_im;
 	double					min_r;
 	double					max_r;
 	double					min_i;

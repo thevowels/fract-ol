@@ -27,10 +27,10 @@ $(LIBMLX_F):
 $(LIBFT):
 	@make -sC $(LIBFT_PATH)
 
-%.o: %.c
+%.o: %.c ./includes/fractol.h
 	@$(CC) $(CFLAGS) -I ./includes -o $@ -c $< $(HEADERS) 
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) ./includes/fractol.h
 	@$(CC) $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
 
 clean:
