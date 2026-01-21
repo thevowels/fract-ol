@@ -14,7 +14,7 @@ LIBS		:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS_PATH	:= src/
 SRCS_FILES	:= 	actions.c colors.c fractals.c \
 				hooks.c inits.c main.c \
-				parser.c utils.c
+				parser.c utils.c leaf.c
 SRCS		:= $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 OBJS		:= ${SRCS:.c=.o}

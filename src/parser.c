@@ -6,10 +6,11 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:22:44 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 09:54:15 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:11:28 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "actions.h"
 #include "fractals.h"
 #include "fractol.h"
 
@@ -30,6 +31,13 @@ static void	set_julia_constants(t_fractol *f, int ac, char **av)
 
 static void	set_fractal(t_fractol *f, int ac, char **av)
 {
+	if (*av[1] == 'K' || (*av[1] == 'k'))
+	{
+		f->draw = &draw_pointbase;
+		return ;
+	}
+	else
+		f->draw = &draw_pixelbase;
 	if (*(av[1]) == 'M' || *(av[1]) == 'm')
 		f->fractal = &mandelbrot;
 	else if (*(av[1]) == 'J' || *(av[1]) == 'j')

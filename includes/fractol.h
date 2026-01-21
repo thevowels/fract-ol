@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 09:52:04 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:10:44 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,25 @@ struct						s_fractol
 	int						is_error;
 	int						color_pattern;
 	double					zoom_factor;
+	void					(*draw)(t_fractol *f);
 	int						(*fractal)(t_fractol *f);
 	int						(*get_color)(int iterations, int max_iterations);
+	double					last_scroll_time;
+	double					accumulated_zoom;
+	bool					is_zooming;
+	int32_t					mouse_x;
+	int32_t					mouse_y;
 };
 
+typedef struct s_leaf
+{
+	double					next_x;
+	double					next_y;
+	double					r;
+	int						px;
+	int						py;
+
+}							t_leaf;
 void						init(t_fractol *f);
 void						exit_mlx(t_img *img);
 void						help_msg(void);

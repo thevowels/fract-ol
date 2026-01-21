@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:05:37 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 08:37:48 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:43:40 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,52 @@ void	keyboard_hook(mlx_key_data_t key, void *param)
 		shift_color(fractol);
 	else
 		return ;
-	draw(fractol);
+	fractol->draw(fractol);
 }
 
 void	mouse_hook(double xdelta, double ydelta, void *param)
 {
 	t_fractol	*fractol;
-	int32_t		mouse_x;
-	int32_t		mouse_y;
 
 	(void)xdelta;
 	fractol = (t_fractol *)param;
-	mlx_get_mouse_pos(fractol->img.mlx, &mouse_x, &mouse_y);
-	if (ydelta < 0)
-		zoom(fractol, mouse_x, mouse_y, fractol->zoom_factor);
-	else if (ydelta > 0)
-		zoom(fractol, mouse_x, mouse_y, 1 / fractol->zoom_factor);
-	draw(fractol);
+	mlx_get_mouse_pos(fractol->img.mlx, &(fractol->mouse_x),
+		&(fractol->mouse_y));
+	if (ydelta < 0 && !fractol->is_zooming)
+	{
+		fractol->accumulated_zoom += fractol->zoom_factor;
+	}
+	else if (ydelta > 0 && !fractol->is_zooming)
+	{
+		fractol->is_zooming = true;
+		fractol->accumulated_zoom -= fractol->zoom_factor;
+	}
+	fractol->last_scroll_time = mlx_get_time();
+}
+
+void	frame_hook(void *param)
+{
+	t_fractol	*fractol;
+	double		current_time;
+
+	fractol = (t_fractol *)param;
+	current_time = mlx_get_time();
+	fractol->is_zooming = true;
+	if (fractol->is_zooming && (current_time - fractol->last_scroll_time) > 0.3)
+	{
+		if (fractol->accumulated_zoom == 0)
+		{
+			fractol->is_zooming = false;
+			return ;
+		}
+		if (fractol->accumulated_zoom > 0)
+			zoom(fractol, fractol->mouse_x, fractol->mouse_y,
+				fractol->accumulated_zoom);
+		else
+			zoom(fractol, fractol->mouse_x, fractol->mouse_y, (1 / (-1
+						* fractol->accumulated_zoom)));
+		fractol->draw(fractol);
+		fractol->accumulated_zoom = 0;
+		fractol->is_zooming = false;
+	}
 }

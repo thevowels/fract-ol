@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 01:54:18 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 08:52:58 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:43:54 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	main(int argc, char **argv)
 	help_msg();
 	if (fractol.is_error == -1)
 		return (EXIT_FAILURE);
-	draw(&fractol);
+	fractol.draw(&fractol);
 	mlx_scroll_hook(img.mlx, &mouse_hook, &fractol);
 	mlx_key_hook(img.mlx, &keyboard_hook, &fractol);
+	mlx_loop_hook(img.mlx, &frame_hook, &fractol);
 	mlx_loop(fractol.img.mlx);
 	mlx_terminate(fractol.img.mlx);
 	return (EXIT_SUCCESS);
