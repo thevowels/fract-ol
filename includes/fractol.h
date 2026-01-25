@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:25:20 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:07:25 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <stdlib.h>
 
 # ifndef WIDTH
-#  define WIDTH 1080
+#  define WIDTH 300
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 720
+#  define HEIGHT 300
 # endif
 
 # ifndef MAX_ITERATIONS

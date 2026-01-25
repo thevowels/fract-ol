@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:50:10 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:34:16 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:05:44 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init(t_fractol *f)
 	f->color_pattern = 2;
 	f->get_color = &color_pattern_2;
 	f->inv_max = 1 / MAX_ITERATIONS;
+	f->last_scroll_time = 1;
 	f->accumulated_zoom = 0;
 	f->is_zooming = false;
 	f->width = WIDTH;
