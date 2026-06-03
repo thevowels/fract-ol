@@ -1,6 +1,8 @@
 *This project has been created as part of the 42 curriculum by **aphyo-ht**.*
 # Fract-ol
 
+![Point Based Fractal](./res/leaf.png)
+
 ## Description
 
 Fract-ol is a comprehensive fractal visualization program that renders mathematically beautiful and infinitely complex fractal sets in real-time. The project explores the fascinating world of fractals through interactive visualization, allowing users to explore the intricate patterns of the Mandelbrot set, Julia sets, and the organic beauty of the Barnsley Fern.
