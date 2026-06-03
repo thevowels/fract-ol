@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:22:44 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:11:28 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/06/04 03:26:59 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	set_julia_constants(t_fractol *f, int ac, char **av)
 	}
 	else
 		f->is_error = -1;
+	if (f->is_error)
+		mlx_terminate(f->img.mlx);
 }
 
 static void	set_fractal(t_fractol *f, int ac, char **av)
@@ -53,7 +55,10 @@ static void	set_fractal(t_fractol *f, int ac, char **av)
 void	parse_args(int argc, char **argv, t_fractol *fractol)
 {
 	if (argc < 2)
+	{
 		fractol->is_error = -1;
+		mlx_terminate(fractol->img.mlx);
+	}
 	else
 	{
 		set_fractal(fractol, argc, argv);

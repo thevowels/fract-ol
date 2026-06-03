@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:05:37 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:49:16 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/06/04 03:10:20 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	keyboard_hook(mlx_key_data_t key, void *param)
 		return ;
 	}
 	else if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
-		move(fractol, 0.2, 'U');
+		move(fractol, 0.05, 'U');
 	else if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
-		move(fractol, 0.2, 'D');
+		move(fractol, 0.05, 'D');
 	else if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
-		move(fractol, 0.2, 'L');
+		move(fractol, 0.05, 'L');
 	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
-		move(fractol, 0.2, 'R');
+		move(fractol, 0.05, 'R');
 	else if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
 		shift_color(fractol);
 	else
@@ -114,7 +114,8 @@ void	frame_hook(void *param)
 	fractol = (t_fractol *)param;
 	current_time = mlx_get_time();
 	fractol->is_zooming = true;
-	if (fractol->is_zooming && (current_time - fractol->last_scroll_time) > 0.3)
+	if (fractol->is_zooming && (current_time
+			- fractol->last_scroll_time) > 0.01)
 	{
 		if (fractol->accumulated_zoom == 0)
 		{

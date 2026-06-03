@@ -6,13 +6,14 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 01:54:18 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:34:53 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/06/04 03:11:31 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include "fractol.h"
 #include "hooks.h"
+#include "extras.h"
 
 int	main(int argc, char **argv)
 {
@@ -33,6 +34,7 @@ int	main(int argc, char **argv)
 	mlx_scroll_hook(img.mlx, &mouse_hook, &fractol);
 	mlx_key_hook(img.mlx, &keyboard_hook, &fractol);
 	mlx_loop_hook(img.mlx, &frame_hook, &fractol);
+	mlx_loop_hook(img.mlx, &render_hook, &fractol);
 	mlx_resize_hook(img.mlx, &resize_hook, &fractol);
 	mlx_loop(fractol.img.mlx);
 	mlx_terminate(fractol.img.mlx);

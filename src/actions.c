@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 06:14:09 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 12:49:23 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/06/04 03:08:25 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,7 @@
 
 void	draw_pixelbase(t_fractol *f)
 {
-	f->x = 0;
-	f->y = 0;
-	while (f->x < f->width)
-	{
-		f->y = 0;
-		while (f->y < f->height)
-		{
-			f->z_re = f->min_r + ((double)f->x * (f->max_r - f->min_r))
-				/ f->width;
-			f->z_im = f->max_i + ((double)f->y * (f->min_i - f->max_i))
-				/ f->height;
-			f->n = f->fractal(f);
-			mlx_put_pixel(f->img.img, f->x, f->y, f->get_color(f->n,
-					MAX_ITERATIONS));
-			f->y++;
-		}
-		f->x++;
-	}
+	f->render = 4;
 }
 
 void	draw_pointbase(t_fractol *f)

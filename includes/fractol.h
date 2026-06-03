@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:14:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/25 19:07:25 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/06/04 02:37:38 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 # include <stdlib.h>
 
 # ifndef WIDTH
-#  define WIDTH 300
+#  define WIDTH 1500
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 300
+#  define HEIGHT 1500
 # endif
 
 # ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 200
+#  define MAX_ITERATIONS 150
 # endif
 
 typedef struct s_img
@@ -47,6 +47,7 @@ struct						s_fractol
 	int						y;
 	int						width;
 	int						height;
+	int						render;
 	double					inv_max;
 	double					z_im;
 	double					z_re;

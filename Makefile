@@ -8,13 +8,14 @@ LIBMLX		:= ./lib/MLX42
 LIBMLX_F	:= $(LIBMLX)/build/libmlx42.a
 
 HEADERS		:= -I ./includes -I $(LIBMLX)/include -I $(LIBFT_PATH)/includes
-LIBS		:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS		:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -g
 # SRCS		:= $(shell find ./src -iname "*.c")
 
 SRCS_PATH	:= src/
 SRCS_FILES	:= 	actions.c colors.c fractals.c \
 				hooks.c inits.c main.c \
-				parser.c utils.c 
+				parser.c utils.c \
+				extras.c
 SRCS		:= $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 OBJS		:= ${SRCS:.c=.o}
@@ -31,7 +32,7 @@ $(LIBFT):
 	@$(CC) $(CFLAGS) -I ./includes -o $@ -c $< $(HEADERS) 
 
 $(NAME): $(OBJS) ./includes/fractol.h
-	@$(CC) $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
+	$(CC) $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
@@ -42,6 +43,6 @@ fclean: clean
 	@rm -rf $(NAME)
 	@rm -f $(LIBFT)
 
-re: clean all
+re: fclean all
 
-.PHONY: all, clean, fclean, re, libmlx
+.PHONY: all, clean, fclean, re

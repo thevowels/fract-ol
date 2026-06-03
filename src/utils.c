@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 05:57:22 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/01/21 13:06:55 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:40:26 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	help_msg(void)
 	ft_printf("Which fractal would you like to see?\n");
 	ft_printf("M - Mandelbrot    ");
 	ft_printf("J - Julia    ");
-	ft_printf("T - Tricorn\n\n");
+	ft_printf("K - Barnsley Fern\n\n");
 	ft_printf("\e[36mUsage example:\t./fractol <type>\n\t\t./fractol \
 	M\e[0m\n\n");
 	ft_printf("\nFor Julia, you may specify starting values which should be betw\

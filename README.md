@@ -259,6 +259,14 @@ src/
 - **Real-time Updates:** Immediate response to user interactions
 - **Memory Optimization:** Smart image buffer management
 
+- **Progressive Block Rendering:** Coarse-to-fine rendering that draws the image
+    in configurable square blocks for a fast initial preview and then refines
+    the image progressively. This improves perceived performance on large
+    resolutions by showing a low-resolution preview quickly and filling in
+    details afterward. Implemented in `src/extras.c` via `put_color_block`,
+    `actual_draw_pixelbase`, and `render_hook`. The render level is controlled
+    by `fractol->render` (block size = 2^render).
+
 ## Resources
 
 ### Mathematical References

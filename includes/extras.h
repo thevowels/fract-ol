@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   extras.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 06:03:35 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/06/04 03:10:12 by aphyo-ht         ###   ########.fr       */
+/*   Created: 2026/06/04 03:09:13 by aphyo-ht          #+#    #+#             */
+/*   Updated: 2026/06/04 03:19:06 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#ifndef EXTRAS_H
+# define EXTRAS_H
 
-# include "fractol.h"
+# include "fractals.h"
 
-void	keyboard_hook(mlx_key_data_t key, void *param);
-void	mouse_hook(double xdelta, double ydelta, void *param);
-void	frame_hook(void *param);
-void	resize_hook(int32_t width, int32_t height, void *param);
+void	put_color_block(t_fractol *f, int block_size);
+void	actual_draw_pixelbase(t_fractol *f, int block_size);
+void	render_hook(void *param);
+
 #endif
